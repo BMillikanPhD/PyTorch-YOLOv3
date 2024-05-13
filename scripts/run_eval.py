@@ -6,8 +6,9 @@ import logging
 import torch
 
 import sys
+import os
 
-sys.path.append('/root/PyTorch-YOLOv3')
+sys.path += [os.path.abspath('..'), os.path.abspath('.')]
 from torch_yolo3.models import Darknet
 from torch_yolo3.utils import NB_CPUS, load_classes, update_path, parse_data_config
 from torch_yolo3.evaluate import evaluate_model
