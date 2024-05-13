@@ -1,6 +1,6 @@
 numpy
-torch>=1.6
-torchvision
+#torch>=1.6
+#torchvision
 matplotlib
 tensorboard
 terminaltables
@@ -8,4 +8,4 @@ terminaltables
 tqdm
 pathos
 PyYAML
-torch-optimizer
+#torch-optimizer

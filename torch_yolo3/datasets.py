@@ -101,7 +101,6 @@ class ListDataset(Dataset):
         """
         with open(list_path, "r") as file:
             img_files = [update_path(fn.strip()) for fn in file.readlines()]
-
         # get the labels for each image if image exista
         label_files = [
             os.path.join(os.path.dirname(imp).replace("images", "labels"),
