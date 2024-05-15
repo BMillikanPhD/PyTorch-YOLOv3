@@ -73,6 +73,7 @@ def main(data_config, model_def, trained_weights, augment, multiscale,
     train_path = update_path(data_config["train"])
     valid_path = update_path(data_config["valid"])
     class_names = load_classes(update_path(data_config["names"]))
+    print(train_path)
 
     # Initiate model
     assert os.path.isfile(model_def), 'missing: %s' % model_def
@@ -207,11 +208,11 @@ def training_batch(dataloader, model, optimizer, epochs, epoch, batch_i, imgs, t
 
 def _format_metrics(loss, precision, recall, avg_prec, f1):
     return [
-        ("loss", loss.mean().item() if loss else 0.),
-        ("precision", precision.mean() if precision else 0.),
-        ("recall", recall.mean() if recall else 0.),
-        ("mAP", avg_prec.mean() if avg_prec else 0.),
-        ("f1", f1.mean() if f1 else 0.),
+        ("loss", loss.mean().item() if loss.any() else 0.),
+        ("precision", precision.mean() if precision.any() else 0.),
+        ("recall", recall.mean() if recall.any() else 0.),
+        ("mAP", avg_prec.mean() if avg_prec.any() else 0.),
+        ("f1", f1.mean() if f1.any() else 0.),
     ]
 
 
