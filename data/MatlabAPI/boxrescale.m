@@ -1,0 +1,20 @@
+function [boxes] = boxrescale(boxdim, imgdim, modeldim)
+    dw = imgdim(2);
+    dh = imgdim(1);
+    scale = modeldim / max(imgdim);
+    pad = imgdim - modeldim / scale;
+    x_center = boxdim(:,1) * dw;
+    y_center = boxdim(:,2) * dh;
+    width    = boxdim(:,3) * dw;
+    height   = boxdim(:,4) * dh;
+    l = floor(x_center - width / 2);
+    r = floor(x_center + width / 2);
+    t = floor(y_center - height / 2);
+    b = floor(y_center + height / 2);
+
+    l( l < 1 ) = 1;
+    r( r > dw ) = dw;
+    t( t < 1 ) = 1;
+    b( b > dh ) = dh;
+    boxes = [l, t, abs(l-r), abs(t-b)];
+end
